@@ -6,6 +6,10 @@
     "weatherDS": {
         "name": "weatherDS",
         "connector": "flexirest",
-        "endpoints": "endpoints"
+        "endpoints": "endpoints",
+        "transformer" : {
+            "library" : "handlebars",
+            "ext" : "hbs"
+        }
     }
 }
