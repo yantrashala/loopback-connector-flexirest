@@ -1,0 +1,24 @@
+{
+    "name": "loopback-connector-flexirest",
+    "version": "1.0.1",
+    "description": "Loopback FLEXI REST Connector",
+    "keywords": [
+        "LoopBack",
+        "rest",
+        "Flexirest",
+        "DataSource",
+        "Connector"
+    ],
+    "main": "index.js",
+    "scripts": { },
+    "dependencies": {
+        "debug": "^2.1.1",
+        "loopback-connector-rest": "1.10.1",
+        "require-dir": "^0.3.0"
+    },
+    "files": [
+        "index.js",
+        "lib",
+        "README.md"
+    ]
+}
