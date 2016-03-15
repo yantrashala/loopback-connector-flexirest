@@ -11,6 +11,13 @@ npm install loopback-connector-flexirest
 # Features
 
 - Use custom folder (endpoints) to organize operations
+- Allow outgoing request parameters transformation
+- Allow incoming response body transformation
+- Allow use of templating library like handlebars for transformation
+- Add new hooks before / after outgoing and incoming transformation
+- Allow custom error handler for functions
+- Extend operation template schema to allow errorHandler, incomingTransform and outgoingTransform to be added as configuration
+
 
 # Usage
 
@@ -30,8 +37,8 @@ Now create a new folder under application root as "endpoints" and store all your
 
 Roadmap
 --------------------------
-- Use connector hooks to execute JSON transformation
-- Externalize Trasformation and configuration during connector initialization
+
+- Add promises in place of callbacks
 - Test coverage
 
 See Also
