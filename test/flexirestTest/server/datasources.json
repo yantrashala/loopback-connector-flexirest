@@ -1,0 +1,11 @@
+{
+    "db": {
+        "name": "db",
+        "connector": "memory"
+    },
+    "weatherDS": {
+        "name": "weatherDS",
+        "connector": "flexirest",
+        "endpoints": "endpoints"
+    }
+}
