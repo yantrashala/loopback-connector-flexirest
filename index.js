@@ -85,23 +85,24 @@ var applyTransformerPatch = function(dataSource) {
                     var transformedOutput = null;
                     try {
                         transformedOutput = self[key].outgoingTransform(context.parameters);
+
+                        if(typeof transformedOutput !== 'object')
+                            done(new Error('transformedOutput is not an object'));
+
+                        Object.keys(context.parameters).filter(function(property){
+                            return !transformedOutput.hasOwnProperty(property);
+                        }).forEach(function(property){
+                            transformedOutput[property] = context.parameters[property];
+                        });
+
+                        context.parameters = transformedOutput;
+                        done();
                     } catch (e) {
                         done(e);
                     }
-
-
-                    if(typeof transformedOutput !== 'object')
-                        done(new Error('transformedOutput is not an object'));
-
-                    Object.keys(context.parameters).filter(function(property){
-                        return !transformedOutput.hasOwnProperty(property);
-                    }).forEach(function(property){
-                        transformedOutput[property] = context.parameters[property];
-                    });
-
-                    context.parameters = transformedOutput;
+                } else {
+                    done();
                 }
-                done();
             }
 
             function errorHandler(err, body, response,done) {
@@ -127,8 +128,11 @@ var applyTransformerPatch = function(dataSource) {
                 done(null, context.body, context.response);
             }
 
-            connector.notifyObserversAround('outgoingTransform', context, outgoingTransform, function() {
+            connector.notifyObserversAround('outgoingTransform', context, outgoingTransform, function(err) {
 
+                //TODO: fix it properly
+                if(err)
+                    return cb(err);
 
                 context.parameters = Object.keys(context.parameters).map(function(property){
                     return context.parameters[property];
