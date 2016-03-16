@@ -12,7 +12,8 @@ var addTransformer = function(app, config) {
     var customErrorHandler = function(err,body,response,cb) {
         if(err) {
             var newerror = new Error('Some custom error occured');
-            newerror.statusCode = 'CUS100';
+            newerror.statusCode = '500';
+            newerror.code = 'CUS100';
             cb(newerror,body,response);
         } else {
             cb(err,body,response);
