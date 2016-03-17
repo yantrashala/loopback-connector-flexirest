@@ -23,6 +23,7 @@ exports.initialize = function initializeDataSource(dataSource, callback) {
 
        settings.operations = [];
        endpointTemplates.forEach(function(templateFile){
+
            debug('Found JSON file', templateFile);
            var defintion = require(templateFile);
            defintion.file = templateFile;
@@ -30,6 +31,11 @@ exports.initialize = function initializeDataSource(dataSource, callback) {
            if(defintion && defintion.template && defintion.functions) {
                // file is a template json file
                debug('Adding template to settings.operations');
+
+               if (baseURL) {
+                   defintion.template.url = baseURL + defintion.template.url;
+               }
+
                settings.operations.push(defintion);
            }
        });
