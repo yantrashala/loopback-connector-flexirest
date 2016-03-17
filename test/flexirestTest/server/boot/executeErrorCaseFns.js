@@ -3,10 +3,10 @@
 
 module.exports = function(server) {
 
-    addTransformer(server);
+    addErrorHandler(server);
 };
 
-var addTransformer = function(app, config) {
+var addErrorHandler = function(app, config) {
     var executeErrorCase = app.models.weather.executeErrorCase;
 
     var customErrorHandler = function(err,body,response,cb) {
@@ -16,6 +16,13 @@ var addTransformer = function(app, config) {
             newerror.code = 'CUS100';
             cb(newerror,body,response);
         } else {
+
+            if(typeof body !== 'object' ||
+            !body.query.results) {
+                err = new Error('No results found');
+                err.statusCode = 404;
+            }
+
             cb(err,body,response);
         }
     }
