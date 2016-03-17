@@ -1,9 +1,7 @@
 'use strict';
 var debug = require('debug')('loopback:connector:flexirest');
 var RestConnector = require('loopback-connector-rest');
-var requiredir = require('require-dir');
 var path = require('path');
-var fs = require('fs');
 var walk = require('./lib/walk');
 var transformerLib = require('./lib/transformer');
 
@@ -140,7 +138,7 @@ var applyTransformerPatch = function(dataSource) {
                 if(err)
                     return cb(err);
 
-                context.parameters = Object.keys(context.parameters).map(function(property){
+                context.parameters = argsList.map(function(property){
                     return context.parameters[property];
                 });
 
