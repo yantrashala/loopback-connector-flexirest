@@ -31,7 +31,7 @@ gulp.task('mochaTest', function (cb) {
     process.chdir('../../');
     gulp.src(['test/index-test.js','test/lib/**/*-test.js'])
     .pipe(mocha({ timeout: 10000 }))
-    .pipe(istanbul.writeReports({dir:'reports/coverage'}))// Creating the reports after tests runned
+    .pipe(istanbul.writeReports({dir:'coverage'}))// Creating the reports after tests runned
     .on('end', function(){
       serverInstance.close();
       cb();
