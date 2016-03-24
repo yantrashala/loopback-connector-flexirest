@@ -1,13 +1,15 @@
 {
   "name": "loopback-connector-flexirest",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Loopback FLEXI REST Connector",
   "keywords": [
     "LoopBack",
     "rest",
     "Flexirest",
     "DataSource",
-    "Connector"
+    "Connector",
+    "backend",
+    "microservices"
   ],
   "main": "index.js",
   "scripts": {},
@@ -16,11 +18,6 @@
     "loopback-connector-rest": "1.10.1",
     "require-dir": "^0.3.0"
   },
-  "files": [
-    "index.js",
-    "lib",
-    "README.md"
-  ],
   "devDependencies": {
       "chai": "^3.5.0",
       "gulp": "^3.9.1",
