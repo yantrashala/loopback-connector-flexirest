@@ -174,7 +174,6 @@ var autoloadFunctions = function(dataSource) {
     var dao = dataSource.connector.DataAccessObject;
     var functionList = ['errorHandler','incomingTransform','outgoingTransform'];
 
-
     var transformer = null;
     if(dataSource.settings.transformer && dataSource.settings.transformer.library
     && dataSource.settings.transformer.ext){
@@ -199,8 +198,6 @@ var autoloadFunctions = function(dataSource) {
                          handlerString);
                 }
 
-
-
                 if(handler) {
                     for (var f in defintion.functions) {
                         debug('autoloading function',name,'for',f);
@@ -209,6 +206,14 @@ var autoloadFunctions = function(dataSource) {
                 }
             }
         });
+
+        if(defintion.hasOwnProperty('shared')) {
+            var sharedFlag = defintion['shared'];
+            for (var f in defintion.functions) {
+                debug('marking function', f ,' with shared flag as',sharedFlag);
+                dao[f]['shared'] = sharedFlag;
+            }
+        }
     });
 };
 

@@ -17,6 +17,7 @@ npm install loopback-connector-flexirest
 - Add new hooks before / after outgoing and incoming transformation
 - Allow custom error handler for functions
 - Extend operation template schema to allow errorHandler, incomingTransform and outgoingTransform to be added as configuration
+- Add a "shared" flag in operation template to disable the operation to be added as a remote method
 
 
 # Usage
@@ -109,6 +110,7 @@ First modify operation template with additional attributes: (errorHandler, outgo
     "functions": {
         "customFunction": ["id"]
     },
+    "shared" : false,
     "errorHandler": "customFunction.errorHandler",
     "outgoingTransform": "customFunction.outgoingTransform",
     "incomingTransform": "customFunction.incomingTransform"
@@ -183,6 +185,7 @@ In place of mentioning the function name for outgoing and incoming transformatio
     "functions": {
         "customFunction": ["id"]
     },
+    "shared" : false,
     "errorHandler": "customFunction.errorHandler",
     "outgoingTransform": "outgoing.hbs",
     "incomingTransform": "incoming.hbs"
