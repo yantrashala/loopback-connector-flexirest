@@ -149,6 +149,7 @@ var applyTransformerPatch = function(dataSource) {
                         } else {
                             delete context.parameters;
                             context.body = body;
+                            context.response = response;
                             connector.notifyObserversAround('incomingTransform', context, incomingTransform, function(err, body, response){
                                 cb(err, body, response);
                             });
