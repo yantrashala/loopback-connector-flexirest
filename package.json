@@ -24,13 +24,20 @@
   },
   "devDependencies": {
       "chai": "^3.5.0",
+      "compression": "^1.0.3",
+      "cors": "^2.5.2",
+      "eslint-html-reporter": "^0.4.14",
       "gulp": "^3.9.1",
+      "gulp-eslint": "^2.0.0",
       "gulp-istanbul": "^0.10.3",
       "gulp-mocha": "^2.2.0",
+      "loopback": "^2.22.0",
+      "loopback-boot": "^2.6.5",
+      "loopback-component-explorer": "^2.1.0",
+      "loopback-datasource-juggler": "^2.39.0",
       "run-sequence": "^1.1.5",
+      "serve-favicon": "^2.0.1",
       "supertest": "^1.1.0",
-      "handlebars": "^4.0.5",
-      "eslint-html-reporter": "^0.4.14",
-      "gulp-eslint": "^2.0.0"
+      "handlebars": "^4.0.5"
   }
 }
