@@ -1,15 +1,16 @@
-var chai = require('chai');
-var expect = chai.assert;
-var app = require('./flexirestTest/server/server');
-var supertest = require('supertest');
-var api = supertest('http://localhost'+':'+app.get('port'));
+'use strict';
+var server = require('./flexirestTest/server/server');
+var expect = require('chai').expect;
+var chai = require('chai')
+    .use(require('chai-http'));
 
-describe('Server should start', function() {
-
-  it('Check for server status', function(done) {
-    api.get('/')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(200, done);
-  });
+describe('Server should start', () => {
+    it('should return models', (done) => {
+     return chai.request(server)
+         .get('/')
+         .then(res => {
+             expect(res).to.have.status(200);
+             done();
+         });
+    });
 });

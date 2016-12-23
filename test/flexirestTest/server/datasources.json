@@ -6,7 +6,7 @@
     "weatherDS": {
         "name": "weatherDS",
         "connector": "flexirest",
-        "endpoints": "endpoints",
+        "path": "test/flexirestTest/endpoints",
         "baseURL" : "https://query.yahooapis.com/v1",
         "transformer" : {
             "library" : "handlebars",

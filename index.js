@@ -3,6 +3,7 @@ var debug = require('debug')('loopback:connector:flexirest');
 var RestConnector = require('loopback-connector-rest');
 var path = require('path');
 var walk = require('./lib/walk');
+var url = require('url');
 var transformerLib = require('./lib/transformer');
 
 /**
@@ -13,7 +14,7 @@ var transformerLib = require('./lib/transformer');
 exports.initialize = function initializeDataSource(dataSource, callback) {
     var settings = dataSource.settings || {};
     var endpointPath = settings.path || 'endpoints';
-    var baseURL = settings.baseURL || settings.restPath || 'http://localhost:3000/';
+    var baseURL = settings.baseURL || settings.restPath || '';
 
     // load endpoints folder and add to operations for loopback-connector-rest
     if (endpointPath) {
@@ -31,7 +32,7 @@ exports.initialize = function initializeDataSource(dataSource, callback) {
                debug('Adding template to settings.operations');
 
                if (baseURL) {
-                   defintion.template.url = baseURL + defintion.template.url;
+                   defintion.template.url = url.resolve(baseURL, defintion.template.url);
                }
 
                settings.operations.push(defintion);
@@ -59,7 +60,7 @@ var applyTransformerPatch = function(dataSource) {
             return param.arg;
         });
 
-        var newfn = function(){
+        var newfn = function(cb){
 
             var self = this;
             var context = {'name':key};
